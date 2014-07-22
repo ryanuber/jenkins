@@ -55,8 +55,8 @@ default['jenkins'].tap do |jenkins|
   #
   # The value of PATH. All jobs will inherit this path in their environment.
   #
-  jenkins['PATH'] = if node['PATH']
-                      [ENV['PATH'], node['PATH']].join ':'
+  jenkins['PATH'] = if node['jenkins'] && node['jenkins']['PATH']
+                      [ENV['PATH'], node['jenkins']['PATH']].join ':'
                     else
                       ENV['PATH']
                     end
