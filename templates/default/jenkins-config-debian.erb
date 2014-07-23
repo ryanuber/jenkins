@@ -15,6 +15,11 @@ JAVA=<%= node['jenkins']['java'] %>
 # arguments to pass to java
 JAVA_ARGS="<%= node['jenkins']['master']['jvm_options'] %>"
 
+# Allow supplementing the PATH environment variable
+<% if node['jenkins']['addpaths'] %>
+PATH="$PATH:<%= node['jenkins']['addpaths'].join(':') %>"
+<% end %>
+
 PIDFILE=/var/run/jenkins/jenkins.pid
 
 # user and group to be invoked as (default to jenkins)
