@@ -146,6 +146,8 @@ JENKINS_ARGS="$JENKINS_ARGS <%= node['jenkins']['master']['jenkins_args'] %>"
 ## Default:     ""
 ## ServiceRestart: jenkins
 #
-# Pass a custom value for PATH
+# Supplement the PATH value for Jenkins
 #
-PATH="<%= node['jenkins']['PATH'] %>"
+<% if node['jenkins']['addpaths'] %>
+PATH="$PATH:<%= node['jenkins']['addpaths'].join(':') %>"
+<% end %>
